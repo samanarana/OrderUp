@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if not current_user.is_anonymous %}
+    <form method="POST" action="{{ url_for('session.logout') }}">
+        <button type="submit">Logout</button>
+    </form>
+{% endif %}
+
+<form method="post" action="{{ url_for('.login') }}">
+  {{ form.csrf_token }}
+  <div>
+    {{ form.employee_number.label }} {{ form.employee_number }}
+
+    {% if form.employee_number.errors %}
+      <ul>
+        {% for error in form.employee_number.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div>
+    {{ form.password.label }} {{ form.password }}
+
+    {% if form.password.errors %}
+      <ul>
+        {% for error in form.password.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div>{{ form.submit }}</div>
+</form>
+{% endblock %}
