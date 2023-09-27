@@ -962,3 +962,32 @@ to add or remove new menu items.
 [2]: https://docs.sqlalchemy.org/en/13/core/metadata.html#sqlalchemy.schema.Column
 [3]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/flask/projects/order-up/assets/order-up-chi.png
 [4]: https://wtforms.readthedocs.io/en/2.3.x/fields/#wtforms.fields.SelectField
+```
+orderuplongprac
+├─ .flaskenv
+├─ .gitignore
+├─ Pipfile
+├─ Pipfile.lock
+├─ README.md
+├─ app
+│  ├─ __init__.py
+│  ├─ config.py
+│  ├─ forms.py
+│  ├─ models.py
+│  ├─ routes
+│  │  ├─ __init.py
+│  │  ├─ orders.py
+│  │  ├─ session.py
+│  │  └─ table_orders.py
+│  └─ templates
+│     ├─ add_items.html
+│     ├─ assign.html
+│     ├─ base.html
+│     ├─ close_table.html
+│     ├─ dashboard.html
+│     ├─ login.html
+│     └─ orders.html
+├─ database.py
+└─ order_up.py
+
+```

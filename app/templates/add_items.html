@@ -1,0 +1,13 @@
+<form action="{{ url_for('table_orders.add_items_to_order') }}" method="post">
+    <select name="order_id">
+        {% for order in open_orders %}
+        <option value="{{ order.id }}">Table {{ order.table.number }}</option>
+        {% endfor %}
+    </select>
+    <select name="menu_item_id">
+        {% for item in menu_items %}
+        <option value="{{ item.id }}">{{ item.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Add Item">
+</form>

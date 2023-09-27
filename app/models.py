@@ -74,6 +74,10 @@ class Order(db.Model):
     table_id = Column(Integer, ForeignKey('tables.id'), nullable=False)
     finished = Column(Boolean, nullable=False, default=False)
 
+    employee = relationship("Employee", back_populates="orders")
+    table = relationship("Table", backref="orders")
+    details = relationship("OrderDetail", back_populates="order")
+
 class OrderDetail(db.Model):
     __tablename__ = 'order_details'
 
@@ -82,4 +86,4 @@ class OrderDetail(db.Model):
     menu_item_id = Column(Integer, ForeignKey('menu_items.id'), nullable=False)
 
     order = relationship("Order", back_populates="details")
-    menu_item = relationship("MenuItem")
+    menu_item = relationship("MenuItem", backref="order_details")

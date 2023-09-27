@@ -3,7 +3,7 @@ from flask import Blueprint, request, render_template, redirect, url_for
 from app import db
 from app.models import MenuItem, OrderDetail
 
-bp = Blueprint("table_order", __name__, url_prefix="/table_order")
+bp = Blueprint("table_orders", __name__, url_prefix="/table_orders")
 
 @bp.route("/assign", methods=["GET", "POST"])
 def assign_employee_to_table():
@@ -15,7 +15,7 @@ def assign_employee_to_table():
         db.session.add(order)
         db.session.commit()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('orders.index'))
 
     employees = Employee.query.all()
     tables = Table.query.all()
@@ -26,10 +26,10 @@ def assign_employee_to_table():
 def close_table():
      if request.method == 'POST':
         order_id = request.form.get('order_id')
-        order = Order.session.get(order_id)
-        order.finished = True
+        order_instance = Order.query.get(order_id)
+        order_instance.finished = True
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('orders.index'))
 
      open_orders = Order.query.filter_by(finished=False).all()
      return render_template('close_table.html', open_orders=open_orders)
@@ -44,7 +44,7 @@ def add_items_to_order():
 
         db.session.add(order_detail)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('orders.index'))
 
     open_orders = Order.query.filter_by(finished=False).all()
     menu_items = MenuItem.query.all()

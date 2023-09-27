@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ current_user.name }}</h2>
+
+    <a href="{{ url_for('table_orders.assign_employee_to_table') }}">Assign Employee to Table</a><br>
+    <a href="{{ url_for('table_orders.close_table') }}">Close Table</a><br>
+    <a href="{{ url_for('table_orders.add_items_to_order') }}">Add Items to Order</a><br>
+
+    <form action="{{ url_for('session.logout') }}" method="post">
+        <input type="submit" value="Logout">
+    </form>
+</body>
+</html>

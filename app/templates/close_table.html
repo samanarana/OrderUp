@@ -1,0 +1,8 @@
+<form action="{{ url_for('table_orders.close_table') }}" method="post">
+    <select name="order_id">
+        {% for order in open_orders %}
+        <option value="{{ order.id }}">Table {{ order.table.number }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Close Table">
+</form>
